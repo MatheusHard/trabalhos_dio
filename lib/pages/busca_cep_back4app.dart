@@ -25,13 +25,13 @@ class _BuscaCepApiState extends State<BuscaCepApi> {
   @override
   void initState() {
     cepApi = CepApi();
-    obterTarefas();
+    listarCeps();
     super.initState();
   }
 
 
 
-void obterTarefas() async {
+void listarCeps() async {
   setState(() {loading = true;});
   cepBack4AppModel = await cepApi.getAllBy4App(null);
   print(cepBack4AppModel.results);
@@ -71,14 +71,15 @@ void obterTarefas() async {
                    ///Verifica se esta salvo na base BAck4App:
                     if(cepModel.cep != null){
                       cepBack4AppModel = await cepApi.getAllBy4App(cep);
-
-                       if(cepBack4AppModel.results!.isNotEmpty) {
-                        print(cepBack4AppModel.results);
+                      if(cepBack4AppModel.results!.isEmpty) {
+                        await cepApi.add(cepModel);
+                        listarCeps();
+                        setState(() {});
                       }
                     }
-
                   }
-                  setState(() {loading= false;});                },
+                  setState(() {loading = false;});
+                  },
                 child: const Text("Pesquisar")
             ),
             const SizedBox(height: 25,),

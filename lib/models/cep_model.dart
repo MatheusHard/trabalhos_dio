@@ -1,4 +1,5 @@
 class CepModel {
+  String? _objectId;
   String? _cep;
   String? _logradouro;
   String? _complemento;
@@ -11,7 +12,8 @@ class CepModel {
   String? _siafi;
 
   CepModel(
-      {String? cep,
+      {String? objectId,
+        String? cep,
         String? logradouro,
         String? complemento,
         String? bairro,
@@ -21,6 +23,9 @@ class CepModel {
         String? gia,
         String? ddd,
         String? siafi}) {
+    if (objectId != null) {
+      this._objectId = objectId;
+    }
     if (cep != null) {
       this._cep = cep;
     }
@@ -53,6 +58,8 @@ class CepModel {
     }
   }
 
+  String? get objectId => _objectId;
+  set objectId(String? objectId) => _objectId = objectId;
   String? get cep => _cep;
   set cep(String? cep) => _cep = cep;
   String? get logradouro => _logradouro;
@@ -75,6 +82,7 @@ class CepModel {
   set siafi(String? siafi) => _siafi = siafi;
 
   CepModel.fromJson(Map<String, dynamic> json) {
+    _objectId = json['objectId'];
     _cep = json['cep'];
     _logradouro = json['logradouro'];
     _complemento = json['complemento'];
@@ -87,8 +95,24 @@ class CepModel {
     _siafi = json['siafi'];
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toCreateJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
+    data['cep'] = this._cep;
+    data['logradouro'] = this._logradouro;
+    data['complemento'] = this._complemento;
+    data['bairro'] = this._bairro;
+    data['localidade'] = this._localidade;
+    data['uf'] = this._uf;
+    data['ibge'] = this._ibge;
+    data['gia'] = this._gia;
+    data['ddd'] = this._ddd;
+    data['siafi'] = this._siafi;
+    return data;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['objectId'] = this._objectId;
     data['cep'] = this._cep;
     data['logradouro'] = this._logradouro;
     data['complemento'] = this._complemento;

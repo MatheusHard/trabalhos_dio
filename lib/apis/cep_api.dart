@@ -37,12 +37,33 @@ class CepApi{
   }
   Future<void> add(CepModel model) async {
     var dio = Dio();
+    try{
+      var response = await dio.post('''url/${model.objectId}''', data: model.toCreateJson());
+      if(response.statusCode == 201){
+        print("salvo");
+      }
+    }catch(e){
+      rethrow;
+    }
 
-    var response = await dio.post('url', data: model);
+
+  }
+  Future<void> update(CepModel model) async {
+    var dio = Dio();
+
+    var response = await dio.put(url, data: model);
     if(response.statusCode == 201){
       print("salvo");
     }
 
   }
+  Future<void> delete(String id) async {
+    var dio = Dio();
 
+    var response = await dio.delete('url', data: model);
+    if(response.statusCode == 201){
+      print("salvo");
+    }
+
+  }
 }
