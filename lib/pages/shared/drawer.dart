@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:trabalhos_dio/pages/lista_contatos_page.dart';
 
 import '../busca_cep_back4app.dart';
 
@@ -77,6 +78,24 @@ class _DrawerCustomState extends State<DrawerCustom> {
               ),
             ),
           ),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            child: InkWell(
+              onTap: (){
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext bd)=> const ContatosPage()));
+              },
+              child: Row(
+                children: const [
+                  Icon(Icons.contacts),
+                  SizedBox(width: 20),
+                  Text("Lista de Contatos"),
+                ],
+              ),
+            ),
+          ),
+
 
 
           const Divider(),

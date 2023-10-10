@@ -4,10 +4,11 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart' as path;
 
 Map<int, String> scripts = {
-  1: '''CREATE TABLE tarefas (
+  1: '''CREATE TABLE contatos (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        descricao TEXT,
-        cloncluido INTEGER
+        nome TEXT,
+        telefone TEXT,
+        urlFoto TEXT
   )'''
 };
 class DataBaseSqFlitte {
