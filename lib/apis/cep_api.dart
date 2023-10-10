@@ -8,7 +8,7 @@ import '../models/cep_model.dart';
 
 class CepApi{
 
-  var url = "https://parseapi.back4app.com/classes/ceps";
+
 
   Future<CepModel> getByCep(String cep)async{
     var response = await http.get(Uri.parse("https://viacep.com.br/ws/$cep/json/"));
@@ -24,6 +24,8 @@ class CepApi{
   }
 
   Future<CepBack4AppModel> getAllBy4App(String? cep) async{
+
+    var url = "https://parseapi.back4app.com/classes/ceps";
     var dio = Dio();
     dio.options.headers["X-Parse-Application-Id"] = "dkQpjL9UrLtmVQGCSu3MDXgq4ZiPQzY9HbrjXBSq";
     dio.options.headers["X-Parse-REST-API-Key"] = "OJhmqZWPhUQSae0f87mASDvI7tjwFp7DJ0iRmSOT";
@@ -36,9 +38,14 @@ class CepApi{
     return CepBack4AppModel.fromJson(result.data);
   }
   Future<void> add(CepModel model) async {
+
+    var url = "https://parseapi.back4app.com/classes/ceps";
     var dio = Dio();
+    dio.options.headers["X-Parse-Application-Id"] = "dkQpjL9UrLtmVQGCSu3MDXgq4ZiPQzY9HbrjXBSq";
+    dio.options.headers["X-Parse-REST-API-Key"] = "OJhmqZWPhUQSae0f87mASDvI7tjwFp7DJ0iRmSOT";
+    dio.options.headers["Content-Type"] = "application/json";
     try{
-      var response = await dio.post('''url/${model.objectId}''', data: model.toCreateJson());
+      var response = await dio.post(url, data: model.toCreateJson());
       if(response.statusCode == 201){
         print("salvo");
       }
@@ -49,20 +56,33 @@ class CepApi{
 
   }
   Future<void> update(CepModel model) async {
+    try{
     var dio = Dio();
+    dio.options.headers["X-Parse-Application-Id"] = "dkQpjL9UrLtmVQGCSu3MDXgq4ZiPQzY9HbrjXBSq";
+    dio.options.headers["X-Parse-REST-API-Key"] = "OJhmqZWPhUQSae0f87mASDvI7tjwFp7DJ0iRmSOT";
+    dio.options.headers["Content-Type"] = "application/json";
 
-    var response = await dio.put(url, data: model);
+    var url = "https://parseapi.back4app.com/classes/ceps";
+    var response = await dio.put('''$url/${model.objectId}''', data: model.toCreateJson());
     if(response.statusCode == 201){
       print("salvo");
+    }}catch(e){
+      rethrow;
     }
 
   }
   Future<void> delete(String id) async {
+    try{
     var dio = Dio();
-
-    var response = await dio.delete('url', data: model);
-    if(response.statusCode == 201){
-      print("salvo");
+    dio.options.headers["X-Parse-Application-Id"] = "dkQpjL9UrLtmVQGCSu3MDXgq4ZiPQzY9HbrjXBSq";
+    dio.options.headers["X-Parse-REST-API-Key"] = "OJhmqZWPhUQSae0f87mASDvI7tjwFp7DJ0iRmSOT";
+    dio.options.headers["Content-Type"] = "application/json";
+    var url = "https://parseapi.back4app.com/classes/ceps";
+    var response = await dio.delete('''$url/$id''');
+    if(response.statusCode == 200){
+      print("deletado");
+    }}catch(e){
+      rethrow;
     }
 
   }

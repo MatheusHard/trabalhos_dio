@@ -70,8 +70,9 @@ void listarCeps() async {
 
                    ///Verifica se esta salvo na base BAck4App:
                     if(cepModel.cep != null){
-                      cepBack4AppModel = await cepApi.getAllBy4App(cep);
-                      if(cepBack4AppModel.results!.isEmpty) {
+                      var lista = await cepApi.getAllBy4App(cep);
+                      if(lista.results!.isEmpty) {
+                        cepModel.cep = cep;
                         await cepApi.add(cepModel);
                         listarCeps();
                         setState(() {});
@@ -90,18 +91,31 @@ void listarCeps() async {
                       itemCount: cepBack4AppModel.results!.length,
                         itemBuilder: (BuildContext bc, int index ){
                           var cep = cepBack4AppModel.results![index];
-                          return ListTile(
-                            title: Text(cep!.logradouro!),
-                            subtitle: 
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('''${cep!.bairro!}, ${cep!.localidade!}/${cep!.uf}'''),
-                                Text('''Cep: ${cep.cep}''')
-                              ],
-                            )
-                            
+                          return Dismissible(
+                            onDismissed: (DismissDirection dismissDirection) async {
+                              setState(() {
+                                loading = true;
+                              });
+                              await cepApi.delete(cep!.objectId!);
+                              listarCeps();
+                              setState(() {
+                                loading = false;
+                              });
+                            },
+                            key: Key(cep!.cep!),
+                            child: ListTile(
+                              title: Text(cep!.logradouro!),
+                              subtitle:
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('''${cep!.bairro!}, ${cep!.localidade!}/${cep!.uf}'''),
+                                  Text('''Cep: ${cep.cep}''')
+                                ],
+                              )
+
+                            ),
                           );
 
                     })
