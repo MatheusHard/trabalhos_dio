@@ -82,11 +82,25 @@ void obterContatos() async {
                               flagSalvarAtualizar = true;
                               nomeController.text = contato!.nome!;
                               telefoneController.text = contato!.telefone!;
+                              fotoUrl = contato!.urlFoto!;
+                              setState(() {
+                              });
                               _dialogSalvar(contato!.id!, context);
                               ///foto
                              },
-                             title: Text(contato!.nome!),
-                             trailing: Text('''${contato!.telefone!} ${contato!.urlFoto!}'''),
+                             title: Row(
+                               children: [
+                                 Image.file(
+                                   File(contato!.urlFoto!),
+                                   width: 30,
+                                   height: 30,
+                                   fit: BoxFit.cover,
+                                 ),
+                                 const SizedBox(width: 25,),
+                                 Text(contato!.nome!),
+                               ],
+                             ),
+                             trailing: Text('''${contato!.telefone!} '''),
                              
                            ));
                       }))
