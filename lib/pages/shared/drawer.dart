@@ -1,8 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'package:trabalhos_dio/pages/lista_contatos_page.dart';
+import 'package:trabalhos_dio/pages/lista_contatos_sqflitte/lista_contatos_page.dart';
+import 'package:trabalhos_dio/pages/tarefas_back4app/lista_tarefas_back4app.dart';
 
-import '../busca_cep_back4app.dart';
+import '../busca_cep_back4app/busca_cep_back4app.dart';
 
 
 
@@ -61,23 +62,7 @@ class _DrawerCustomState extends State<DrawerCustom> {
                 accountName: const Text("Matheus Hardman"),
                 accountEmail: const Text("burumungu@gmail.com")),
           ),
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            child: InkWell(
-              onTap: (){
-                Navigator.pop(context);
-                Navigator.push(context, MaterialPageRoute(builder: (BuildContext bd)=> const BuscaCepApi()));
-              },
-              child: Row(
-                children:  const[
-                  Icon(Icons.person),
-                  SizedBox(width: 20),
-                  Text("Busca Cep/Back4App "),
-                ],
-              ),
-            ),
-          ),
+
           Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -90,13 +75,46 @@ class _DrawerCustomState extends State<DrawerCustom> {
                 children: const [
                   Icon(Icons.contacts),
                   SizedBox(width: 20),
-                  Text("Lista de Contatos"),
+                  Text("Lista de Contatos SqFlitte"),
                 ],
               ),
             ),
           ),
 
-
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            child: InkWell(
+              onTap: (){
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext bd)=> const BuscaCepApi()));
+              },
+              child: Row(
+                children:  const[
+                  Icon(Icons.contact_mail),
+                  SizedBox(width: 20),
+                  Text("Busca Cep -> Back4App "),
+                ],
+              ),
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            child: InkWell(
+              onTap: (){
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext bd)=> const ListaDeTarefasBack4App()));
+              },
+              child: Row(
+                children:  const[
+                  Icon(Icons.checklist_rtl_sharp),
+                  SizedBox(width: 20),
+                  Text("Lista de Tarefas -> Back4App "),
+                ],
+              ),
+            ),
+          ),
 
           const Divider(),
           Container(

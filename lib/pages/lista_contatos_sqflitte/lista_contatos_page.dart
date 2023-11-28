@@ -11,7 +11,7 @@ import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:path/path.dart';
 import 'package:trabalhos_dio/utils/utils.dart';
 
-import '../utils/app_images.dart';
+import '../../utils/app_images.dart';
 
 class ContatosPage extends StatefulWidget {
   const ContatosPage({super.key});

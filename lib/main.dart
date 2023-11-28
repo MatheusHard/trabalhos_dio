@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trabalhos_dio/database/repository/contato_repository.dart';
 import 'package:trabalhos_dio/models/contato_model.dart';
-import 'package:trabalhos_dio/pages/home_page.dart';
+import 'package:trabalhos_dio/pages/home/home_page.dart';
 
 void main() async {
 

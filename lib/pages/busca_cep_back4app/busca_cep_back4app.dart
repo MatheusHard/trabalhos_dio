@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:trabalhos_dio/pages/shared/drawer.dart';
 
-import '../apis/cep_api.dart';
-import '../models/cep_back4app_model.dart';
-import '../models/cep_model.dart';
+import '../../apis/cep_api.dart';
+import '../../models/cep_back4app_model.dart';
+import '../../models/cep_model.dart';
 
 class BuscaCepApi extends StatefulWidget {
   const BuscaCepApi({super.key});
