@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:trabalhos_dio/models/cep_back4app_model.dart';
 
@@ -65,7 +66,9 @@ class CepApi{
     var url = "https://parseapi.back4app.com/classes/ceps";
     var response = await dio.put('''$url/${model.objectId}''', data: model.toCreateJson());
     if(response.statusCode == 201){
-      print("salvo");
+      if (kDebugMode) {
+        print("salvo");
+      }
     }}catch(e){
       rethrow;
     }
