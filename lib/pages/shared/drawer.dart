@@ -1,9 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:trabalhos_dio/pages/lista_contatos_sqflitte/lista_contatos_page.dart';
-import 'package:trabalhos_dio/pages/tarefas_back4app/lista_tarefas_back4app.dart';
-
 import '../busca_cep_back4app/busca_cep_back4app.dart';
+import '../tarefas_getx_back4app/lista_tarefas_back4app.dart';
 
 
 
